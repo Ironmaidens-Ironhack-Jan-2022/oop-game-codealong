@@ -2,6 +2,8 @@ class Game {
     constructor(){
         this.obstaclesArr = [];
         this.timer = 0;
+        this.refreshRate = 1000 / 60; //60 frames per second
+        this.obstacleFrequency = 80;
     }
 
     start(){
@@ -17,21 +19,21 @@ class Game {
             this.timer++;
 
             // create obstacles
-            if(this.timer % 8 === 0){
+            if(this.timer % this.obstacleFrequency === 0){
                 const newObstacle = new Obstacle();
                 this.obstaclesArr.push(newObstacle);
                 newObstacle.domElement = this.createDomElm(newObstacle);
                 this.drawDomElm(newObstacle);
             }
 
-            //move all obstacles in obstaclesArr
+            //iterate through obstaclesArr
             this.obstaclesArr.forEach((obstacle) => {
                 obstacle.moveDown();
                 this.drawDomElm(obstacle);
                 this.detectCollisionWithPlayer(obstacle);
             });
 
-        }, 500);
+        }, this.refreshRate);
 
     }
     addEventListeners(){
@@ -96,7 +98,7 @@ class Obstacle{
         this.domElement = null;
     }
     moveDown(){
-        this.positionY -= 10;
+        this.positionY -= 1;
         console.log("moving down.... current poistion: " + this.positionX);
     }
 }
