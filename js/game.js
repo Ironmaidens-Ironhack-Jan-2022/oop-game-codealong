@@ -72,10 +72,10 @@ class Game {
 class Player{
     constructor(){
         this.className = "player";
-        this.positionX = 0;
-        this.positionY = 0;
         this.width = 10;
         this.height = 10;
+        this.positionX = 0;
+        this.positionY = 0;
         this.domElement = null;
     }
     moveLeft(){
@@ -91,10 +91,10 @@ class Player{
 class Obstacle{
     constructor(){
         this.className = "obstacle";
-        this.positionX = 50;
-        this.positionY = 110;
         this.width = 10;
         this.height = 10;
+        this.positionX = Math.floor(Math.random() * ( 100 - this.width + 1)); // between 0 and 100-width
+        this.positionY = 110;
         this.domElement = null;
     }
     moveDown(){
